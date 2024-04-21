@@ -1,0 +1,32 @@
+.service-table {
+    border-radius: 4px;
+    width: 100%;
+}
+
+.service-search {
+    float: left;
+    margin-top: 15px;
+    width: 50%;
+}
+
+.service-insert {
+    float: right;
+    margin-top: 15px;
+    width: 10%;
+}
+
+.insert-button {
+    float: right;
+}
+
+.search-button {
+    float: left;
+    width: 10%;
+    margin-top: 23px;
+    margin-left: 20px;
+}
+
+.insert-dialog-text {
+    margin-top: 10px;
+    margin-bottom: 3px;
+}

@@ -1,0 +1,41 @@
+.login-page {
+    height: 100vh;
+    background-color: #fff;
+
+    .title {
+        font-family: 'Ma Shan Zheng', cursive;
+        font-size: 350%;
+        text-align: center;
+        line-height: 2; /* 根据需要调整 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* 根据需要调整 */
+    }
+
+    .bg {
+        background: url('@/assets/tiananmen-square.jpg') no-repeat center / cover;
+        border-radius: 20px 20px 20px 20px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        user-select: none;
+
+        .title {
+            margin: 0 auto;
+        }
+
+        .button {
+            width: 100%;
+        }
+
+        .flex {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

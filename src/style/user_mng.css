@@ -1,0 +1,49 @@
+.user-search-condition-wrapper {
+    border-radius: 4px;
+    margin-top: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: rgb(213, 235, 255);
+    display: inline-block;
+    width: 100%;
+}
+
+.user-search-condition-wrapper>div {
+    display: inline-block;
+    margin-top: 2px;
+}
+
+.demo-date-picker {
+    margin-right: 20px;
+}
+
+.selector-sex {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.selector-status {
+    margin-left: 40px;
+}
+
+.user-search-button {
+    display: inline-block;
+    float: right;
+}
+
+.search-button-icon {
+    margin-right: 5px;
+}
+
+.user-main {
+    margin-top: 5px;
+}
+
+
+/* 分页组件 */
+
+.pager-user-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

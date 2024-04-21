@@ -1,0 +1,137 @@
+/* 整个页面的样式 */
+.page {
+    height: 100vh;
+    background-color: #fff;
+    font-family: "PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,Helvetica Neue,Arial,sans-serif";
+    overflow-y: auto;
+    width: 100%;
+    font-size: 14px;
+    margin: 0; 
+	padding: 0;
+	border: 0;
+}
+
+/* 头部的样式 */
+.white-header {
+    border-radius: 4px;
+    background-color: #ffffff;
+    height: 58px;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px 0 rgba(9, 9, 9, 0.08);
+    min-width: 1220px;
+}
+
+.head_wrapper {
+    margin: 0 auto;
+    height: 100%;
+    z-index: 100;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.center-title {
+    font-family: 'Ma Shan Zheng', cursive;
+    vertical-align: middle;
+    align-self: center;
+    cursor: pointer;
+}
+
+.center-logo {
+    margin-left: 5%;
+    width: 35px;
+    height: 35px;
+    float: left;
+    vertical-align: middle;
+    align-self: center;
+    cursor: pointer;
+}
+
+.right-me-info {
+    margin-right: 3%;
+    display: flex;
+    flex-direction: row;
+    float: right;
+}
+
+.me-nickname {
+    margin-left: 10px;
+    margin-right: 5px;
+    color: gray;
+    align-self: center;
+}
+
+.sep-line {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: gray;
+    align-self: center;
+}
+
+.logout {
+    margin-left: 5px;
+    margin-right: 5px;
+    color: gray;
+    align-self: center;
+    cursor: pointer;
+}
+
+/* 导航栏的样式 */
+.demo-tabs > .el-tabs__content {
+    padding: 32px;
+    color: #6b778c;
+    font-size: 32px;
+    font-weight: 600;
+}
+  
+.el-tabs--right .el-tabs__content,
+.el-tabs--left .el-tabs__content {
+	height: 100vh;
+}
+
+/* 主页的样式 */
+.main {
+    height: 100%;
+    width: 100%;
+    background-color: #6b778c;
+}
+
+.mng {
+    border-radius: 4px;
+    background-color: #e4eeff;
+    margin-top: 10px;
+}
+
+/* 页脚的样式 */
+.footer {
+    border-radius: 4px;
+    height: 95%;
+    width: 100%;
+    background: #222e3b;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    z-index: -100;
+    flex: 0 0 auto;
+}
+
+.all-words-wrapper {
+    align-self: center;
+}
+
+.footer-link {
+    color: #dadbdb;
+    font-size: 12px;
+    font-weight: 200;
+}
+.dian {
+    color: #dadbdb;
+}
