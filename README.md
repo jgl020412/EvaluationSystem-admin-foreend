@@ -1,29 +1,5 @@
 # Evaluation-admin-system
 
-This template should help get you started developing with Vue 3 in Vite.
+这里是政务服务好差评的管理员的前端系统，主要使用Vue进行开发
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+主要包括服务管理、用户管理、评价管理以及统计与分析的页面
