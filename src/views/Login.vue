@@ -2,13 +2,11 @@
 import { ref } from "vue";
 import { ElMessage } from "element-plus";
 
-//定义数据模型
-const registerData = ref({
+const loginData = ref({
   username: "",
   password: "",
 });
 
-//定义表单校验规则
 const rules = {
   username: [
     { required: true, message: "请输入用户名", trigger: "blur" },
@@ -19,86 +17,45 @@ const rules = {
     { min: 5, max: 16, message: "长度为5~16位非空字符", trigger: "blur" },
   ],
 };
-
-//绑定数据,复用注册表单的数据模型
-//表单数据校验
-//登录函数
-import { useTokenStore } from "@/stores/token.js";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
-
-// const tokenStore = useTokenStore();
-
-import { userLoginService } from "@/api/login.js";
-const login = async () => {
-  //调用接口,完成登录
-  let result = await userLoginService(registerData.value);
-  if (result.status == 200) {
-    alert(result.msg ? result.msg : "登录成功");
-  } else {
-    alert(res.data.msg);
-  }
-  router.push("/center");
-};
 </script>
 
 <template>
-  <el-row class="login-page">
-    <el-col :span="12" class="bg">
-      <el-item>
-        <h1 class="title">政务服务好差评<br />管理员系统</h1>
-      </el-item>
-    </el-col>
-    <el-col :span="6" :offset="3" class="form">
-      <!-- 登录表单 -->
-      <el-form
-        ref="form"
-        size="large"
-        autocomplete="off"
-        :model="registerData"
-        :rules="rules"
-      >
-        <el-form-item>
-          <h1>请输入密码进行登录：</h1>
-        </el-form-item>
-        <el-form-item prop="username">
-          <el-input
-            :prefix-icon="User"
-            placeholder="请输入用户名"
-            v-model="registerData.username"
-          ></el-input>
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input
-            name="password"
-            :prefix-icon="Lock"
-            type="password"
-            placeholder="请输入密码"
-            v-model="registerData.password"
-          ></el-input>
-        </el-form-item>
-        <el-form-item class="flex">
-          <div class="flex">
-            <el-checkbox>记住我</el-checkbox>
-          </div>
-        </el-form-item>
-        <!-- 登录按钮 -->
-        <el-form-item>
-          <el-button
-            class="button"
-            type="primary"
-            auto-insert-space
-            @click="login"
-            >登录</el-button
+  <el-container>
+    <el-main class="login-main-page">
+      <div class="login-header">
+        <img src="@/assets/nationalEmblem.png" class="login-logo" />
+        <div class="login-title">政务服务好差评系统--管理员平台</div>
+      </div>
+      <div class="login-form">
+        <div class="login-form-input">
+          <el-form
+            :label-position="labelPosition"
+            label-width="auto"
+            autocomplete="off"
+            :model="loginData"
+            :rules="rules"
+            style="max-width: 500px"
           >
-        </el-form-item>
-      </el-form>
-    </el-col>
-  </el-row>
+            <el-form-item label="用户名">
+              <el-input v-model="loginData.username" />
+            </el-form-item>
+            <el-form-item label="密&nbsp;&nbsp;&nbsp;码">
+              <el-input v-model="loginData.password" />
+            </el-form-item>
+            <el-form-item>
+                <div>
+                    <el-checkbox class="remenber-me">记住我</el-checkbox>
+                    <el-button class="login-button" type="primary" auto-insert-space
+                >登录</el-button>
+                </div>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+    </el-main>
+  </el-container>
 </template>
 
 <style lang="scss" scoped>
-/* 样式 */
 @import "@/style/login.css";
 </style>

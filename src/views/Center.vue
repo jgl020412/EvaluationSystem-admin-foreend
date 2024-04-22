@@ -81,6 +81,5 @@ const tabPosition = ref('left')
 <style lang="scss" scoped>
 
 @import '@/style/container_center.css';
-@import '@/style/container_mng.css';
 
 </style>
