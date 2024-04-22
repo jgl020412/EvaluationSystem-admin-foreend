@@ -1,7 +1,28 @@
-.evaluation-user-search {
-    display: inline-block;
+.evaluation-header-wrapper {
+    height: 50px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .evaluation-service-search {
+    margin-left: 10px;
+    margin-right: 20px;
     display: inline-block;
+}
+
+.evaluation-time-search {
+    margin-left: 10px;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.evaluation-level-search {
+    margin-left: 10px;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.evaluation-button-search {
+    display: inline-block;
+    margin-left: 10px;
 }
