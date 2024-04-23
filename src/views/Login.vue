@@ -1,21 +1,23 @@
 <script setup>
 import { ref } from "vue";
 import { ElMessage } from "element-plus";
+import { userLoginService } from "@/api/login.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const loginData = ref({
-  username: "",
+  name: "",
   password: "",
 });
 
-const rules = {
-  username: [
-    { required: true, message: "请输入用户名", trigger: "blur" },
-    { min: 5, max: 16, message: "长度为5~16位非空字符", trigger: "blur" },
-  ],
-  password: [
-    { required: true, message: "请输入密码", trigger: "blur" },
-    { min: 5, max: 16, message: "长度为5~16位非空字符", trigger: "blur" },
-  ],
+const login = async () => {
+  let result = await userLoginService(loginData.value);
+  if (result.status == 200) {
+    alert(result.msg ? result.msg : "登录成功");
+    router.push("/center");
+  } else {
+    alert(result.msg ? result.msg : "登录失败");
+  }
 };
 </script>
 
@@ -37,17 +39,19 @@ const rules = {
             style="max-width: 500px"
           >
             <el-form-item label="用户名">
-              <el-input v-model="loginData.username" />
+              <el-input v-model="loginData.name" />
             </el-form-item>
             <el-form-item label="密&nbsp;&nbsp;&nbsp;码">
-              <el-input v-model="loginData.password" />
+              <el-input v-model="loginData.password" type="password" show-password/>
             </el-form-item>
             <el-form-item>
-                <div>
-                    <el-checkbox class="remenber-me">记住我</el-checkbox>
-                    <el-button class="login-button" type="primary" auto-insert-space
-                >登录</el-button>
-                </div>
+              <el-button
+                class="login-button"
+                type="primary"
+                auto-insert-space
+                @click="login"
+                >登录</el-button
+              >
             </el-form-item>
           </el-form>
         </div>
