@@ -3,7 +3,10 @@ import { ref } from "vue";
 import { ElMessage } from "element-plus";
 import { userLoginService } from "@/api/login.js";
 import { useRouter } from "vue-router";
+import { useTokenStore } from "@/stores/token.js";
+
 const router = useRouter();
+const tokenStore = useTokenStore();
 
 const loginData = ref({
   name: "",
@@ -14,6 +17,7 @@ const login = async () => {
   let result = await userLoginService(loginData.value);
   if (result.status == 200) {
     alert(result.msg ? result.msg : "登录成功");
+    tokenStore.setToken(result.data);
     router.push("/center");
   } else {
     alert(result.msg ? result.msg : "登录失败");
@@ -42,7 +46,11 @@ const login = async () => {
               <el-input v-model="loginData.name" />
             </el-form-item>
             <el-form-item label="密&nbsp;&nbsp;&nbsp;码">
-              <el-input v-model="loginData.password" type="password" show-password/>
+              <el-input
+                v-model="loginData.password"
+                type="password"
+                show-password
+              />
             </el-form-item>
             <el-form-item>
               <el-button

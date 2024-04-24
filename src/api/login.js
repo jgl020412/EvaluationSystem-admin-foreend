@@ -9,3 +9,10 @@ export const userLoginService = (loginData) => {
     }
     return request.post('/admin/doLogonByPassword', params)
 }
+
+// 提供退出登录的函数
+export const userLogoutService = (adminId) => {
+    const params = new URLSearchParams()
+    params.append("adminId", adminId)
+    return request.post('/admin/adminLogout', params)
+}
