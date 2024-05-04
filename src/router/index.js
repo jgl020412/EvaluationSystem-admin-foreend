@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 //导入组件
 import LoginVue from '@/views/Login.vue'
-import LayoutVue from '@/views/Layout.vue'
 import Center from '@/views/Center.vue'
 
 //定义路由关系

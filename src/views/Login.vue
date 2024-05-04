@@ -15,12 +15,12 @@ const loginData = ref({
 
 const login = async () => {
   let result = await userLoginService(loginData.value);
-  if (result.status == 200) {
-    alert(result.msg ? result.msg : "登录成功");
+  if (result.data.status == 200) {
+    alert(result.data.msg ? result.data.msg : "登录成功");
     tokenStore.setToken(result.data);
     router.push("/center");
   } else {
-    alert(result.msg ? result.msg : "登录失败");
+    alert(result.data.msg ? result.data.msg : "登录失败");
   }
 };
 </script>
