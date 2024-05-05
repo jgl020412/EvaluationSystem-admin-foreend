@@ -1,84 +1,3 @@
-<script setup>
-import { ref } from "vue";
-import { ElMessage } from "element-plus";
-
-const dialogSetting = ref(false);
-const dialogView = ref(false);
-
-const tableData = [
-  {
-    id: "1001",
-    name: "user1",
-    phoneNum: "18888888888",
-    mail: "288898884@user.com",
-    idNum: "230123200012123456",
-    job: "程序员",
-    sex: "男",
-    birthday: "2000-12-12",
-    province: "黑龙江",
-    city: "哈尔滨",
-    district: "依兰县",
-    status: "已冻结",
-  },
-  {
-    id: "1001",
-    name: "user1",
-    phoneNum: "18888888888",
-    mail: "288898884@user.com",
-    idNum: "230123200012123456",
-    job: "程序员",
-    sex: "男",
-    birthday: "2000-12-12",
-    province: "黑龙江",
-    city: "哈尔滨",
-    district: "依兰县",
-    status: "已冻结",
-  },
-  {
-    id: "1001",
-    name: "user1",
-    phoneNum: "18888888888",
-    mail: "288898884@user.com",
-    idNum: "230123200012123456",
-    job: "程序员",
-    sex: "男",
-    birthday: "2000-12-12",
-    province: "黑龙江",
-    city: "哈尔滨",
-    district: "依兰县",
-    status: "已冻结",
-  },
-  {
-    id: "1001",
-    name: "user1",
-    phoneNum: "18888888888",
-    mail: "288898884@user.com",
-    idNum: "230123200012123456",
-    job: "程序员",
-    sex: "男",
-    birthday: "2000-12-12",
-    province: "黑龙江",
-    city: "哈尔滨",
-    district: "依兰县",
-    status: "已冻结",
-  },
-  {
-    id: "1001",
-    name: "user1",
-    phoneNum: "18888888888",
-    mail: "288898884@user.com",
-    idNum: "230123200012123456",
-    job: "程序员",
-    sex: "男",
-    birthday: "2000-12-12",
-    province: "黑龙江",
-    city: "哈尔滨",
-    district: "依兰县",
-    status: "已冻结",
-  },
-];
-</script>
-
 <template>
   <div class="common-layout">
     <el-container>
@@ -91,7 +10,7 @@ const tableData = [
               placeholder="输入姓名"
             />
             <el-input
-              v-model="input_phone_num"
+              v-model="input_mail"
               style="width: 260px"
               placeholder="输入邮箱"
             />
@@ -107,7 +26,7 @@ const tableData = [
             />
             <el-input
               v-model="input_job"
-              style="width: 150px"
+              style="width: 130px"
               placeholder="输入职业"
             />
           </div>
@@ -115,7 +34,7 @@ const tableData = [
           <div class="demo-date-picker">
             <div class="block">
               <el-date-picker
-                v-model="value1"
+                v-model="birthday"
                 type="date"
                 placeholder="输入生日"
                 :size="size"
@@ -124,105 +43,68 @@ const tableData = [
           </div>
           <div>
             <el-select
-              v-model="value"
-              placeholder="请选择城市"
+              v-model="provinceId"
+              placeholder="请选择省份"
               style="width: 120px"
             >
               <el-option
-                v-for="item in cities"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+                v-for="item in province"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
               >
-                <span style="float: left">{{ item.label }}</span>
-                <span
-                  style="
-                    float: right;
-                    color: var(--el-text-color-secondary);
-                    font-size: 13px;
-                  "
-                >
-                  {{ item.value }}
-                </span>
+                <span style="float: left">{{ item.name }}</span>
               </el-option> </el-select
             ><el-select
-              v-model="value"
+              v-model="cityId"
               placeholder="请选择城市"
               style="width: 120px"
             >
               <el-option
-                v-for="item in cities"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+                v-for="item in city[provinceId]"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
               >
-                <span style="float: left">{{ item.label }}</span>
-                <span
-                  style="
-                    float: right;
-                    color: var(--el-text-color-secondary);
-                    font-size: 13px;
-                  "
-                >
-                  {{ item.value }}
-                </span>
+                <span style="float: left">{{ item.name }}</span>
               </el-option> </el-select
             ><el-select
-              v-model="value"
-              placeholder="请选择城市"
+              v-model="districtId"
+              placeholder="请选择区/县"
               style="width: 120px"
             >
               <el-option
-                v-for="item in cities"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
+                v-for="item in district[cityId]"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
               >
-                <span style="float: left">{{ item.label }}</span>
-                <span
-                  style="
-                    float: right;
-                    color: var(--el-text-color-secondary);
-                    font-size: 13px;
-                  "
-                >
-                  {{ item.value }}
-                </span>
+                <span style="float: left">{{ item.name }}</span>
               </el-option>
             </el-select>
           </div>
 
           <div class="selector-sex">
-            <el-checkbox
-              v-model="checked1"
-              label="男"
-              size="100"
-              checked="true"
-            />
-            <el-checkbox
-              v-model="checked2"
-              label="女"
-              size="100"
-              checked="true"
-            />
+            <el-checkbox v-model="man" label="男" size="100" checked="true" />
+            <el-checkbox v-model="woman" label="女" size="100" checked="true" />
           </div>
 
           <div class="selector-status">
             <el-checkbox
-              v-model="checked1"
+              v-model="freeze"
               label="已冻结"
               size="120"
               checked="true"
             />
             <el-checkbox
-              v-model="checked2"
+              v-model="normal"
               label="正常"
               size="120"
               checked="true"
             />
           </div>
           <div class="user-search-button">
-            <el-button type="primary" round
+            <el-button type="primary" round @click="getUsersByCondition"
               ><div class="search-button-icon">
                 <el-icon><Search /></el-icon>
               </div>
@@ -235,7 +117,7 @@ const tableData = [
       <!-- 主体表格部分 -->
       <el-main>
         <div class="user-main">
-          <el-table :data="tableData" style="width: 100%">
+          <el-table :data="userList" style="width: 100%">
             <el-table-column
               align="center"
               fixed
@@ -259,7 +141,7 @@ const tableData = [
               align="center"
               prop="mail"
               label="邮箱地址"
-              width="200"
+              width="210"
             />
             <el-table-column
               align="center"
@@ -284,6 +166,7 @@ const tableData = [
               prop="birthday"
               label="生日"
               width="120"
+              :formatter="formatBirthday"
             />
             <el-table-column
               align="center"
@@ -315,11 +198,20 @@ const tableData = [
               label="操作"
               width="80"
             >
-              <template #default>
-                <el-button link type="primary" size="280" @click="dialogSetting = true">
+              <template #default="{ row }">
+                <el-button
+                  link
+                  type="primary"
+                  size="280"
+                  @click="OpenChangeStatus(row)"
+                >
                   <el-icon><Setting /></el-icon>
                 </el-button>
-                <el-button link type="primary" size="280" @click="dialogView = true"
+                <el-button
+                  link
+                  type="primary"
+                  size="280"
+                  @click="showUserDetails(row)"
                   ><el-icon><View /></el-icon
                 ></el-button>
               </template>
@@ -327,49 +219,59 @@ const tableData = [
           </el-table>
 
           <div class="pager-user-wrapper">
-            <el-pagination background layout="prev, pager, next" :total="100" />
+            <el-pagination
+              v-model:current-page="curPage"
+              background
+              layout="prev, pager, next"
+              :page-count="maxPage"
+              :total="total"
+              @current-change="getUsers"
+            />
           </div>
         </div>
       </el-main>
 
-		<!-- 对话框 -->
-		<el-dialog
-			v-model="dialogSetting"
-			title="是否要更改用户状态"
-			width="500"
-			style="border-radius: 10px;"
-			:before-close="handleClose"
-		>
-			<div>目前用户状态为:</div>
-			<div>更改之后的用户状态为：</div>
-			<template #footer>
-			<div class="dialog-footer">
-				<el-button @click="dialogSetting = false">取消</el-button>
-				<el-button color="red" @click="dialogSetting = false">
-				确定
-				</el-button>
-			</div>
-			</template>
-		</el-dialog>
+      <!-- 对话框 -->
+      <el-dialog
+        v-model="dialogSetting"
+        title="是否要更改用户状态"
+        width="500"
+        style="border-radius: 10px"
+        :before-close="handleClose"
+      >
+        <div>
+          目前用户状态为:{{ userStatus.status == 0 ? "已冻结" : "正常状态" }}
+        </div>
+        <div>
+          更改之后的用户状态为：{{
+            userStatus.status == 1 ? "已冻结" : "正常状态"
+          }}
+        </div>
+        <template #footer>
+          <div class="dialog-footer">
+            <el-button @click="dialogSetting = false">取消</el-button>
+            <el-button color="red" @click="changeStatus"> 确定 </el-button>
+          </div>
+        </template>
+      </el-dialog>
 
-		<el-dialog
-			v-model="dialogView"
-			title="用户信息"
-			width="500"
-			style="border-radius: 10px;"
-			:before-close="handleClose"
-		>
-			<div>姓名：</div>
-			<div>手机号：</div>
-			<div>邮箱地址：</div>
-			<div>身份证号：</div>
-			<div>职业：</div>
-			<div>性别：</div>
-			<div>生日：</div>
-			<div>地区：</div>
-			<div>状态：</div>
-		</el-dialog>
-
+      <el-dialog
+        v-model="dialogView"
+        title="用户信息"
+        width="500"
+        style="border-radius: 10px"
+        :before-close="handleClose"
+      >
+        <div>姓名：{{ userDetails.name }}</div>
+        <div>手机号：{{ userDetails.phone_num }}</div>
+        <div>邮箱地址：{{ userDetails.mail }}</div>
+        <div>身份证号：{{ userDetails.idNum }}</div>
+        <div>职业：{{ userDetails.job }}</div>
+        <div>性别：{{ userDetails.sex }}</div>
+        <div>生日：{{ userDetails.birthday }}</div>
+        <div>地区：{{ userDetails.place }}</div>
+        <div>状态：{{ userDetails.status == 0 ? "已冻结" : "正常状态" }}</div>
+      </el-dialog>
     </el-container>
   </div>
 </template>
@@ -377,3 +279,182 @@ const tableData = [
 <style lang="scss" scoped>
 @import "@/style/user_mng.css";
 </style>
+
+<script setup>
+import { ref } from "vue";
+import { ElMessage } from "element-plus";
+import {
+  userList,
+  getUserList,
+  changeUserStatus,
+  getUserListByCondition,
+} from "@/api/user.js";
+
+import provinceData from "@/assets/json/province.json";
+import cityData from "@/assets/json/city.json";
+import countryData from "@/assets/json/country.json";
+import provinceObject from "@/assets/json/province_object.json";
+import cityObject from "@/assets/json/city_object.json";
+import countryObject from "@/assets/json/country_object.json";
+
+// 相关其他的搜索信息的数据模型
+const input_id_num = ref("");
+const input_name = ref("");
+const input_mail = ref("");
+const input_phone_num = ref("");
+const input_job = ref("");
+const birthday = ref("");
+const man = ref(true);
+const woman = ref(true);
+const freeze = ref(true);
+const normal = ref(true);
+
+const searchUserBo = ref({
+  birthday: "",
+  city: "",
+  district: "",
+  id: "",
+  idNum: "",
+  job: "",
+  mail: "",
+  name: "",
+  password: "",
+  phoneNum: "",
+  province: "",
+  sex: "",
+  status: "",
+});
+
+// 有关地区的选择的数据模型
+const province = provinceData;
+const city = cityData;
+const district = countryData;
+const provinceId = ref("");
+const cityId = ref("");
+const districtId = ref("");
+
+const dialogSetting = ref(false);
+
+// 有关用户详情展示的数据模型
+const dialogView = ref(false);
+const userDetails = ref({
+  name: "",
+  phone_num: "",
+  mail: "",
+  idNum: "",
+  job: "",
+  sex: "",
+  birthday: "",
+  place: "",
+  status: "",
+});
+
+// 有关用户状态的展示的数据模型
+const userStatus = ref({
+  status: 1,
+  id: "",
+});
+
+// 有关分页需要的数据模型
+const curPage = ref(1); // 分页页数
+const pageSize = ref(2); // 分页每页显示数量
+const maxPage = ref(1); // 总页数
+const total = ref(1); // 总记录数
+
+const getUsers = async () => {
+  let result = await getUserList(curPage.value, pageSize.value);
+  if (result.data.status == 200) {
+    userList.value = result.data.data.rows;
+    maxPage.value = result.data.data.total;
+    total.value = result.data.data.records;
+  } else {
+    alert(result.data.msg ? result.data.msg : "获取失败");
+  }
+};
+
+getUsers();
+
+const showUserDetails = async (row) => {
+  userDetails.value.name = row.name;
+  userDetails.value.phone_num = row.phoneNum;
+  userDetails.value.mail = row.mail;
+  userDetails.value.idNum = row.idNum;
+  userDetails.value.job = row.job;
+  userDetails.value.sex = row.sex;
+  userDetails.value.birthday = row.birthday;
+  userDetails.value.place = row.province + row.city + row.district;
+  userDetails.value.status = row.status;
+  dialogView.value = true;
+};
+
+const OpenChangeStatus = async (row) => {
+  userStatus.value.id = row.id;
+  userStatus.value.status = row.status;
+  dialogSetting.value = true;
+};
+
+const changeStatus = async () => {
+  let result = await changeUserStatus(
+    userStatus.value.id,
+    userStatus.value.status
+  );
+  if (result.data.status == 200) {
+    alert("修改成功");
+  } else {
+    alert(result.data.msg ? result.data.msg : "修改失败");
+  }
+  getUsers();
+  dialogSetting.value = false;
+};
+
+const getUsersByCondition = async () => {
+  searchUserBo.value.name = input_name.value;
+  searchUserBo.value.mail = input_mail.value;
+  searchUserBo.value.idNum = input_id_num.value;
+  searchUserBo.value.phoneNum = input_phone_num.value;
+  searchUserBo.value.job = input_job.value;
+  searchUserBo.value.birthday = birthday.value;
+
+  if (provinceObject.hasOwnProperty(provinceId.value)) {
+    searchUserBo.value.province = provinceObject[provinceId.value].name;
+  }
+  if (cityObject.hasOwnProperty(cityId.value)) {
+    searchUserBo.value.city = cityObject[cityId.value].name;
+  }
+  if (countryObject.hasOwnProperty(districtId.value)) {
+    searchUserBo.value.district = countryObject[districtId.value].name;
+  }
+
+  if (woman && man) {
+    searchUserBo.value.sex = null;
+  } else if (woman) {
+    searchUserBo.value.sex = 0;
+  } else {
+    searchUserBo.value.sex = 1;
+  }
+
+  if (freeze && normal) {
+    searchUserBo.value.status = null;
+  } else if (freeze) {
+    searchUserBo.value.status = 0;
+  } else {
+    searchUserBo.value.status = 1;
+  }
+
+  console.log(searchUserBo.value);
+
+  let result = await getUserListByCondition(
+    searchUserBo.value,
+    curPage.value,
+    pageSize.value
+  );
+  console.log(result.data);
+  if (result.data.status == 200) {
+    userList.value = result.data.data.rows;
+    maxPage.value = result.data.data.total;
+    total.value = result.data.data.records;
+  } else {
+    alert(result.data.msg ? result.data.msg : "查询失败");
+  }
+};
+</script>

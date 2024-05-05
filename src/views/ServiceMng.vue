@@ -184,7 +184,7 @@ import {
   serviceList,
   getServiceListByName,
   getServiceList,
-  updateOrModifyService,
+  saveOrUpdateService,
   deleteService
 } from "@/api/service.js";
 
@@ -219,8 +219,7 @@ const updateService = ref({
 });
 
 const confirmInsert = async () => {
-  console.log(insertService.value)
-  let result = await updateOrModifyService(insertService.value);
+  let result = await saveOrUpdateService(insertService.value);
   if (result.data.status == 200) {
     alert("添加成功");
   } else {
@@ -256,7 +255,7 @@ const showUpdateDialog = async(row) => {
 }
 
 const confirmUpdate = async () => {
-  let result = await updateOrModifyService(updateService.value);
+  let result = await saveOrUpdateService(updateService.value);
   if (result.data.status == 200) {
     alert("修改成功");
   } else {

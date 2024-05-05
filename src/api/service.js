@@ -85,8 +85,8 @@ export const getServiceListByName = (name) => {
     return request.post("/serviceMng/getServiceListByName", params)
 }
 
-export const updateOrModifyService = (updateOrModifyServiceBo) => {
-    return request.post("/serviceMng/saveOrUpdateService", updateOrModifyServiceBo)
+export const saveOrUpdateService = (saveOrModifyServiceBo) => {
+    return request.post("/serviceMng/saveOrUpdateService", saveOrModifyServiceBo)
 }
 
 export const deleteService = (id) => {
