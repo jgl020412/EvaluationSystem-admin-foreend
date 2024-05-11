@@ -174,3 +174,7 @@ export const deleteEvaluation = async(id) => {
     params.append("id", id)
     return request.post("/EvaluationMng/deleteEvaluation", params)
 }
+
+export const getTotalEvaluationCount = async() => {
+    return request.get("/EvaluationMng/getTotalEvaluation");
+}

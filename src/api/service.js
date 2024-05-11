@@ -94,3 +94,7 @@ export const deleteService = (id) => {
     params.append("id", id)
     return request.post("/serviceMng/deleteService", params)
 }
+
+export const getTotalServiceCount = async() => {
+    return request.get("/serviceMng/getTotalServiceCount");
+}

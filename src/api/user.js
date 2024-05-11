@@ -94,3 +94,7 @@ export const getUserListByCondition = async(searchUserBO, page, pageSize) => {
     params.append("pageSize", pageSize)
     return request.post("/userMng/getUserListByCondition", searchUserBO, { params })
 }
+
+export const getTotalUserCount = async() => {
+    return request.get("/userMng/getTotalUserCount");
+}

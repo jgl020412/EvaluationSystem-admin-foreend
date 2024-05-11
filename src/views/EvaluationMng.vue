@@ -133,8 +133,11 @@
                     }}”
                   </div>
                   <div class="reply-item-center">“{{ reply.content }}”</div>
-                  <div class="reply-item-bottom">
+                  <div v-show="reply.isAdmin==0" class="reply-item-bottom">
                     用户{{ reply.userId }} 于 {{ reply.time }} 发表
+                  </div>
+                  <div v-show="reply.isAdmin==1" class="reply-item-bottom">
+                    <strong>管理员{{ reply.userId }}</strong> 于 {{ reply.time }} 发表
                   </div>
                 </div>
                 <div class="replyOperation">
