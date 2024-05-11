@@ -98,3 +98,7 @@ export const getUserListByCondition = async(searchUserBO, page, pageSize) => {
 export const getTotalUserCount = async() => {
     return request.get("/userMng/getTotalUserCount");
 }
+
+export const getUserRegionRatio = async() => {
+    return request.get("/userMng/getRegionRatioOfUser");
+}

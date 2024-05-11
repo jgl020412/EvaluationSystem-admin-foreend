@@ -178,3 +178,13 @@ export const deleteEvaluation = async(id) => {
 export const getTotalEvaluationCount = async() => {
     return request.get("/EvaluationMng/getTotalEvaluation");
 }
+
+export const getLevelRatio = async() => {
+    return request.get("/EvaluationMng/getLevelRatio");
+}
+
+export const analysisEvaluation = async(level) => {
+    const params = new URLSearchParams()
+    params.append("level", level)
+    return request.post("/EvaluationMng/getAnalysisEvaluation", params)
+}
