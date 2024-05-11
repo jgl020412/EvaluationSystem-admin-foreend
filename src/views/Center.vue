@@ -4,14 +4,13 @@ import { ElMessage } from "element-plus";
 import { userLogoutService } from "@/api/login.js";
 import { useTokenStore } from "@/stores/token.js";
 import { useRouter } from "vue-router";
-import { serviceList, getServiceList } from "@/api/service.js";
 
 const router = useRouter();
 const tokenStore = useTokenStore();
 
 const tabPosition = ref("left");
 
-const doLogout = async (adminId) => {
+const doLogout = async () => {
   let result = await userLogoutService(tokenStore.token.adminId);
   if (result.status == 200) {
     tokenStore.removeToken();
@@ -36,7 +35,7 @@ const doLogout = async (adminId) => {
             <h1 class="center-title">政务服务好差评系统--管理员平台</h1>
 
             <div class="right-me-info">
-              <span class="me-nickname">{{ tokenStore.token.data.name }}</span>
+              <span class="me-nickname">{{ tokenStore.token.name }}</span>
               <span class="sep-line">|</span>
               <span class="logout" @click="doLogout">退出登录</span>
             </div>

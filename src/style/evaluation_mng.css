@@ -26,3 +26,51 @@
     display: inline-block;
     margin-left: 10px;
 }
+
+.list {
+    list-style-type: none;
+}
+
+.reply-item {
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.reply-item-center {
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.reply-item-bottom {
+    text-align: right;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.replyContent {
+    background-color: aliceblue;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.replyOperation {
+    display: flex;
+    /* 将内容向右对齐 */
+    justify-content: flex-end;
+}
+
+.evaluationContent {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: 1px solid paleturquoise;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.evaluationOperation {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}

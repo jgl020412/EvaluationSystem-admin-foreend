@@ -17,7 +17,7 @@ const login = async () => {
   let result = await userLoginService(loginData.value);
   if (result.data.status == 200) {
     alert(result.data.msg ? result.data.msg : "登录成功");
-    tokenStore.setToken(result.data);
+    tokenStore.setToken(result.data.data.id, result.data.data.name);
     router.push("/center");
   } else {
     alert(result.data.msg ? result.data.msg : "登录失败");

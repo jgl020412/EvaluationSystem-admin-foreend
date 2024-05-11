@@ -357,7 +357,7 @@ const userStatus = ref({
 
 // 有关分页需要的数据模型
 const curPage = ref(1); // 分页页数
-const pageSize = ref(2); // 分页每页显示数量
+const pageSize = ref(8); // 分页每页显示数量
 const maxPage = ref(1); // 总页数
 const total = ref(1); // 总记录数
 
