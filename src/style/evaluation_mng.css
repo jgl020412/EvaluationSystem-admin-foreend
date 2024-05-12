@@ -27,50 +27,68 @@
     margin-left: 10px;
 }
 
-.list {
-    list-style-type: none;
-}
-
-.reply-item {
-    margin-top: 5px;
-    margin-left: 10px;
-}
-
-.reply-item-center {
-    text-align: center;
-    margin-top: 5px;
-    margin-left: 10px;
-}
-
-.reply-item-bottom {
-    text-align: right;
-    margin-top: 5px;
-    margin-left: 10px;
-}
-
-.replyContent {
+.evaluationContent {
     background-color: aliceblue;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.all-replys-list-wrapper {
+    margin-top: 28px;
+}
+
+.all-replys-list {
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e9e8e8;
+}
+
+.reply-info-wrapper {
+    margin-left: 20px;
+}
+
+.publish-info {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
+}
+
+.publish-date {
+    margin-left: 15px;
+    color: #ccc;
+}
+
+.quote-wrapper {
     margin-top: 10px;
+    width: 580px;
+    /* height: 50px; */
+    padding: 15px 15px;
+    background-color: aliceblue;
+}
+
+.blank-wrapper {
+    width: 580px;
+    background-color: #ffffff;
+}
+
+.quote-content {
+    margin-bottom: 10px;
+}
+
+.publish-content {
+    margin-top: 8px;
     margin-bottom: 5px;
+    margin-left: 15px;
 }
 
 .replyOperation {
-    display: flex;
-    /* 将内容向右对齐 */
-    justify-content: flex-end;
-}
-
-.evaluationContent {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    border: 1px solid paleturquoise;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.evaluationOperation {
     margin-right: 10px;
-    margin-bottom: 10px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    width: 60px;
 }

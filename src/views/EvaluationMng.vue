@@ -100,7 +100,7 @@
         <h1>服务名称：{{ evaluationData.serviceName }}</h1>
         <div>
           <div class="evaluationContent">
-            评价内容：{{ evaluationData.content }}
+            评价内容：<br/>{{ evaluationData.content }}
           </div>
           <div class="evaluationOperation">
             <el-button type="warning" round @click="createReplyInitNoFather"
@@ -122,48 +122,53 @@
             </el-popconfirm>
           </div>
         </div>
-        <div style="overflow: auto">
-          <ul class="list" :infinite-scroll-disabled="disabled">
-            <li v-for="(reply, index) in replyList" :key="index">
-              <div class="list-item">
-                <div class="replyContent">
-                  <div class="reply-item" v-show="reply.fatherId != null">
-                    该消息是回复“用户{{ reply.fatherUserId }}：{{
-                      reply.fatherContent
-                    }}”
-                  </div>
-                  <div class="reply-item-center">“{{ reply.content }}”</div>
-                  <div v-show="reply.isAdmin==0" class="reply-item-bottom">
-                    用户{{ reply.userId }} 于 {{ reply.time }} 发表
-                  </div>
-                  <div v-show="reply.isAdmin==1" class="reply-item-bottom">
-                    <strong>管理员{{ reply.userId }}</strong> 于 {{ reply.time }} 发表
-                  </div>
-                </div>
-                <div class="replyOperation">
-                  <el-button type="warning" circle @click="createReplyInit(reply)"
-                    ><el-icon><ChatSquare /></el-icon
-                  ></el-button>
-                  <el-popconfirm
-                    width="220"
-                    confirm-button-text="确定删除"
-                    cancel-button-text="取消"
-                    icon-color="red"
-                    title="真的要删除这条评论吗？"
-                    @confirm="deleteRep(reply)"
-                  >
-                    <template #reference>
-                      <el-button type="danger" circle
-                        ><el-icon><Delete /></el-icon
-                      ></el-button>
-                    </template>
-                  </el-popconfirm>
-                </div>
+        <div class="all-replys-list-wrapper">
+          <div
+            class="all-replys-list"
+            v-for="(reply, index) in replyList"
+            :key="index"
+          >
+            <div class="reply-info-wrapper">
+              <!-- 回复的内容，如果判断是回复别人的留言，则再此引用一下 -->
+              <div class="quote-wrapper" v-if="reply.fatherId != null">
+                <span class="quote-content">
+                  <span>回复“</span>
+                  <span
+                    ><strong>用户{{ reply.fatherUserId }}</strong
+                    >：</span
+                  ><span>{{ reply.fatherContent }}</span>
+                  <span>”</span>
+                </span>
               </div>
-            </li>
-          </ul>
-          <p v-if="loading">Loading...</p>
-          <p v-if="noMore">No more</p>
+              <div class="blank-wrapper" v-else></div>
+
+              <div class="publish-info">
+                <div v-if="reply.isAdmin==0">用户{{ reply.userId }} 发表：</div>
+                <div v-else><strong>管理员{{ reply.userId }}</strong> 发表：</div>
+              </div>
+              <div class="publish-content">{{ reply.content }}</div>
+              <div class="publish-date">{{ reply.time }}</div>
+            </div>
+            <div class="replyOperation">
+              <el-button type="warning" circle @click="createReplyInit(reply)"
+                ><el-icon><ChatSquare /></el-icon
+              ></el-button>
+              <el-popconfirm
+                width="220"
+                confirm-button-text="确定删除"
+                cancel-button-text="取消"
+                icon-color="red"
+                title="真的要删除这条评论吗？"
+                @confirm="deleteRep(reply)"
+              >
+                <template #reference>
+                  <el-button type="danger" circle
+                    ><el-icon><Delete /></el-icon
+                  ></el-button>
+                </template>
+              </el-popconfirm>
+            </div>
+          </div>
         </div>
       </el-dialog>
 
@@ -177,14 +182,12 @@
           v-model="newReply.content"
           :rows="5"
           type="textarea"
-          placeholder="Please input"
+          placeholder="请文明发言哦"
         />
         <template #footer>
           <div class="dialog-footer">
             <el-button @click="replyDialog = false">取消</el-button>
-            <el-button type="primary" @click="createReply">
-              发表
-            </el-button>
+            <el-button type="primary" @click="createReply"> 发表 </el-button>
           </div>
         </template>
       </el-dialog>
@@ -284,41 +287,40 @@ const createReplyInit = async (row) => {
   replyDialog.value = true;
 };
 
-const createReplyInitNoFather = async() => {
+const createReplyInitNoFather = async () => {
   newReply.value.evaluationId = evaluationData.value.id;
   newReply.value.fatherId = null;
   newReply.value.isAdmin = 1;
   newReply.value.userId = tokenStore.token.adminId;
   replyDialog.value = true;
-}
+};
 
-const createReply = async() => {
+const createReply = async () => {
   let result = await insertReply(newReply.value);
   if (result.data.status == 200) {
-    alert("发表成功")
+    alert("发表成功");
   } else {
-    alert(result.data.msg ? result.data.msg : "发表失败")
+    alert(result.data.msg ? result.data.msg : "发表失败");
   }
   replyDialog.value = false;
-}
+};
 
-const deleteRep = async(reply) => {
-  console.log(reply.id)
-  let result = await deleteReply(reply.id)
+const deleteRep = async (reply) => {
+  console.log(reply.id);
+  let result = await deleteReply(reply.id);
   if (result.data.status == 200) {
-    alert("删除成功")
+    alert("删除成功");
   } else {
-    alert(result.data.msg ? result.data.msg : "删除失败")
-  }
-}
-
-const deleteEval = async () => {
-  let result = await deleteEvaluation(evaluationData.value.id)
-  if (result.data.status == 200) {
-    alert("删除成功")
-  } else {
-    alert(result.data.msg ? result.data.msg : "删除失败")
+    alert(result.data.msg ? result.data.msg : "删除失败");
   }
 };
 
+const deleteEval = async () => {
+  let result = await deleteEvaluation(evaluationData.value.id);
+  if (result.data.status == 200) {
+    alert("删除成功");
+  } else {
+    alert(result.data.msg ? result.data.msg : "删除失败");
+  }
+};
 </script>
